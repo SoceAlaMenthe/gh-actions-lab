@@ -1,12 +1,6 @@
 name: Tache planifiee
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/scheduled.yml'
-
   schedule:
     # Chaque jour ouvre (lundi-vendredi) a 09:00 UTC
     - cron: '0 9 * * 1-5'
