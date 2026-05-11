@@ -1,0 +1,43 @@
+name: Shell Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  shell-lab:
+    runs-on: ubuntu-latest
+    steps:
+      # Etape 1 : Script multi-lignes
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Script multi-lignes
+        run: |
+          echo "Premier message"
+          echo "Deuxieme message"
+          echo "Troisieme message"
+
+      # Etape 2 : Working directory
+      - name: Lister le dossier scripts
+        working-directory: ./scripts
+        run: ls -la
+
+      # Etape 3 : Variables d'environnement au niveau etape
+      - name: Afficher des variables d environnement
+        env:
+          PRENOM: Isaiah
+          COURS: DevOps
+        run: |
+          echo "Prenom : $PRENOM"
+          echo "Cours : $COURS"
+
+      # Etape 4 : Echec volontaire avec continue-on-error
+      - name: Etape qui echoue volontairement
+        continue-on-error: true
+        run: |
+          echo "Cette etape va echouer..."
+          exit 1
+
+      # Etape 5 : Preuve que le job continue
+      - name: Le job continue malgre l echec
+        run: echo "Le job est toujours vert !"
