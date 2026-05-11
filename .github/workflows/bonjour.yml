@@ -1,10 +1,27 @@
-name: Bonjour
+# name : Nom du workflow, affiché dans l'onglet Actions de GitHub.
+name: Workflow d'initiation
 
+# on : Événement déclencheur. Ici le workflow se lance à chaque push.
 on: push
 
+# jobs : Ensemble des jobs (tâches) à exécuter.
 jobs:
-  bonjour:
+  # Identifiant du job. Chaque job s'exécute dans un environnement isolé.
+  saluer-le-monde:
+    # runs-on : Définit le type de machine virtuelle (runner) utilisée.
     runs-on: ubuntu-latest
+
+    # steps : Liste ordonnée des étapes du job.
     steps:
+      # Étape 1 : Affiche un message de bienvenue.
       - name: Dire bonjour
+        # run : Commande shell exécutée par l'étape.
         run: echo "Bonjour depuis GitHub Actions !"
+
+      # Étape 2 : Affiche la date du jour.
+      - name: Afficher la date du jour
+        run: date
+
+      # Étape 3 : Affiche l'utilisateur qui a déclenché le workflow.
+      - name: Afficher l'acteur GitHub
+        run: echo "Déclenché par ${{ github.actor }}"
