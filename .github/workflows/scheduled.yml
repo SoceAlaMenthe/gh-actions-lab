@@ -1,4 +1,4 @@
-name: Tâche planifiée
+name: Scheduled Task
 
 on:
   schedule:
