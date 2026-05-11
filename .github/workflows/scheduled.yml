@@ -1,8 +1,14 @@
 name: Tache planifiee
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/scheduled.yml'
+
   schedule:
-    # Chaque jour ouvré (lundi-vendredi) à 09:00 UTC
+    # Chaque jour ouvre (lundi-vendredi) a 09:00 UTC
     - cron: '0 9 * * 1-5'
 
   workflow_dispatch:
@@ -21,8 +27,8 @@ jobs:
   tache-planifiee:
     runs-on: ubuntu-latest
     steps:
-      - name: Afficher l'heure d'exécution
-        run: echo "Exécution planifiée à $(date -u)"
+      - name: Afficher l heure d execution
+        run: echo "Execution planifiee a $(date -u)"
 
-      - name: Afficher l'environnement sélectionné
-        run: echo "Environnement choisi : ${{ github.event.inputs.environment || 'aucun (exécution cron)' }}"
+      - name: Afficher l environnement selectionne
+        run: echo "Environnement choisi - ${{ github.event.inputs.environment || 'aucun (execution cron)' }}"
