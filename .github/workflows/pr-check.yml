@@ -4,13 +4,18 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/pr-check.yml'
 
 jobs:
   afficher-info-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Afficher le numéro de la PR
-        run: echo "PR numéro ${{ github.event.pull_request.number }}"
+      - name: Afficher le numero de la PR
+        run: echo "PR numero ${{ github.event.pull_request.number || 'N/A (push)' }}"
 
-      - name: Afficher l'auteur de la PR
-        run: echo "Auteur : ${{ github.event.pull_request.user.login }}"
+      - name: Afficher l auteur de la PR
+        run: echo "Auteur - ${{ github.event.pull_request.user.login || github.actor }}"
